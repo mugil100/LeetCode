@@ -9,7 +9,6 @@ class Solution(object):
                 j-=1
             else:
                 return [i+1,j+1]
-        return [i+1,j+1]
                 
         
         
