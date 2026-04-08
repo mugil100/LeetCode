@@ -15,7 +15,7 @@ class Solution(object):
                 
             sett.add(s[r])
             w = r-l+1
-            maxW = max(w, maxW)
+            maxW = w if w > maxW else maxW
         return maxW
 
 
