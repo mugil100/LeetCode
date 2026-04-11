@@ -11,6 +11,7 @@ class Solution(object):
                 sum-=nums[l]
                 l+=1
                 if res ==1: return 1
-        return res if res !=float('inf') else 0
+        if res== float('inf'): return 0
+        return res
 
         
