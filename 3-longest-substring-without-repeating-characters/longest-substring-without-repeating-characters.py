@@ -1,22 +1,14 @@
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
         l=0
-        sett= set()
-        maxW=0
-        w =0
+        hashSet=set()
+        w=0
         for r in range(len(s)):
-            while s[r] in sett:
-                sett.remove(s[l])
+            while s[r] in hashSet:
+                hashSet.remove(s[l])
                 l+=1
-                
-            sett.add(s[r])
-            w = r-l+1
-            if w > maxW :maxW = w
-        return maxW
-
+            w = r-l+1 if r-l+1 > w else w
+            hashSet.add(s[r])
+        return w
 
         
