@@ -22,11 +22,11 @@ class Solution(object):
                 right += word_len
                 
                 if word in word_count:
-                    seen[word] = seen.get(word, 0) + 1
+                    seen[word] = seen.get(word, 0) + 1#update the counted words
                     count += 1
                     
                     while seen[word] > word_count[word]:
-                        left_word = s[left:left + word_len]
+                        left_word = s[left:left + word_len]#slide the window if freq is more
                         seen[left_word] -= 1
                         left += word_len
                         count -= 1
