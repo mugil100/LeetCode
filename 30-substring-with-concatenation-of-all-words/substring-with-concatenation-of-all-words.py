@@ -4,39 +4,37 @@ class Solution(object):
     def findSubstring(self, s, words):
         if not s or not words:
             return []
-        
         word_len = len(words[0])
-        word_count = Counter(words)
         total_words = len(words)
-        
-        res = []
-        
-        for i in range(word_len):  # offsets
-            left = i
-            right = i
+        req_count = Counter(words)
+        res=[]
+
+        for i in range(word_len):
+            l = i
+            r = i
             seen = {}
-            count = 0
-            
-            while right + word_len <= len(s):
-                word = s[right:right + word_len]
-                right += word_len
-                
-                if word in word_count:
-                    seen[word] = seen.get(word, 0) + 1#update the counted words
-                    count += 1
-                    
-                    while seen[word] > word_count[word]:
-                        left_word = s[left:left + word_len]#slide the window if freq is more
-                        seen[left_word] -= 1
-                        left += word_len
-                        count -= 1
-                    
+            count =0
+            while r+ word_len <= len(s):
+                word = s[r: r+ word_len]
+                r+= word_len
+
+                if word in req_count:
+                    seen[word] = seen.get(word,0)+1
+                    count+=1
+
+                    while seen[word] > req_count[word]:
+                        lword = s[l: l+word_len]
+                        seen[lword]-=1
+                        l+=word_len
+                        count-=1
                     if count == total_words:
-                        res.append(left)
-                
+                        res.append(l)
                 else:
                     seen.clear()
-                    count = 0
-                    left = right
-        
+                    count=0
+                    l=r
         return res
+                
+                
+                
+        
