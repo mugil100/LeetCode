@@ -1,19 +1,21 @@
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
-        n = len(matrix)
-        n_col = len(matrix[0])
-        res=[]
-        for i in range(n):
-            for j in range(n_col):
-                if matrix[i][j]==0:
-                    res.append([i,j])
-        for (i,j) in res:
-            for a in range(n):
-                matrix[a][j]=0
-            for b in range(n_col):
-                matrix[i][b]=0
-        del res
-            
+        row_len = len(matrix)
+        col_len = len(matrix[0])
+        row= set()
+        col = set()
+        for r in range(row_len):
+            for c in range(col_len):
+                if matrix[r][c]==0:
+                    row.add(r)
+                    col.add(c)
+        for r in row:
+            for i in range(col_len):
+                matrix[r][i]=0  #set cols to 0
+        for c in col:
+            for i in range(row_len):
+                matrix[i][c]=0  #set rows to 0
+                  
 
                 
         
