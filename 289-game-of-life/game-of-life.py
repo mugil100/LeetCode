@@ -1,26 +1,33 @@
 class Solution:
     def gameOfLife(self, board: List[List[int]]) -> None:
-        offsets = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
         rows = len(board)
         cols = len(board[0])
-        nbc=[]
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                ind = (i,j) 
-                neighbours = 0
-                for r,c in offsets:
-                    if 0<=i+r<=rows-1 and 0<=j+c<=cols-1 and board[i+r][j+c]==1:
-                        neighbours+=1
-                nbc.append(neighbours)
-        ind=0
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                if nbc[ind]<2:
-                    board[i][j]=0
-                if nbc[ind]<=3:
-                    pass
-                if nbc[ind]>3:
-                    board[i][j]=0
-                if nbc[ind]==3:
-                    board[i][j]=1
-                ind+=1
+        def neighbour(r,c):
+            n=0
+            for i in range(r-1,r+2):
+                for j in range(c-1,c+2):
+                    if( i<0 or i==rows or j<0 or j==cols or (i==r and j==c)):
+                        continue
+                    else:
+                        if board[i][j] in [1,3]:
+                            n+=1
+            return n
+
+        for r in range(rows):
+            for c in range(cols):
+                nbrs = neighbour(r,c)
+                if board[r][c]:
+                    if nbrs in [2,3]:
+                        board[r][c]=3 #1->1     #if nbrs<2: 1->0
+                else:
+                    if nbrs==3:
+                        board[r][c]=2 #0->1     #if nbrs<3: 0->0 
+        for r in range(rows):
+            for c in range(cols):
+                if board[r][c]==1:
+                    board[r][c]=0
+                elif board[r][c] in [2,3]:
+                    board[r][c]=1
+
+
+        
