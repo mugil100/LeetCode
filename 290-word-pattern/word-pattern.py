@@ -5,7 +5,7 @@ class Solution:
         l=None
         n=len(s)
         mapper={}
-        used = {}
+        used = set()
         if len(words)!= len(pattern):
             return False
         for i in range(len(pattern)):
@@ -19,7 +19,7 @@ class Solution:
                 if words[i] in used:
                     return False
                 mapper[val]=words[i]
-                used[words[i]]=val
+                used.add(words[i])
         return True
 
 
