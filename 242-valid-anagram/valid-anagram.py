@@ -3,18 +3,11 @@ class Solution:
         if len(s)!=len(t):
             return False
         mapper = defaultdict(int)
-
         for x in s:
-            mapper[x]+=1
-        
-        for i in range(len(t)):
-            val = t[i]
-            if val in mapper:
-                if mapper[val]==1:
-                    del mapper[val]
-                    continue
-                mapper[val]-=1
-            else:
+            mapper[x]+=1  
+        for x in t:
+            if x not in mapper or mapper[x]==0:
                 return False
+            mapper[x]-=1
         return True
         
