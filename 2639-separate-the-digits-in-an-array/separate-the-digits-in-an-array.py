@@ -7,8 +7,6 @@ class Solution:
                     res.append(int(char))
             else:
                 res.append(x)
-
-
         return res
 
 
