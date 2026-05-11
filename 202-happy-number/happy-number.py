@@ -1,10 +1,7 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
         intCount=0
-        hashk = set()
-
-        if n==1: return True
-        
+        hashk = set()        
         while n!=1:
             if n in hashk:
                 return False
@@ -13,8 +10,6 @@ class Solution:
             n=0
             for x in chars:
                 n += int(x)**2
-              
-            
         return True
             
 
