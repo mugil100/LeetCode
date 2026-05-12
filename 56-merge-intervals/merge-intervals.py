@@ -7,7 +7,7 @@ class Solution:
             lastEnd = op[-1][1]
 
             if start <=lastEnd:
-                op[-1][1] = max(end,lastEnd)
+                op[-1][1] = max(lastEnd,end)
             else:
                 op.append([start,end])
 
