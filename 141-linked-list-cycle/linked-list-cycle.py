@@ -14,9 +14,4 @@ class Solution:
             if p1==p2:
                 return True
         return False
-            
-
-            
-
-        return True
         
