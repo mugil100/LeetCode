@@ -1,30 +1,26 @@
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        p1 = l1
-        p2 = l2
-        s1=""
-        s2=""
-        while p1 or p2:
-            if p1:
-                s1+= str(p1.val)
-                p1 = p1.next
-            if p2:
-                s2+= str(p2.val)
-                p2 = p2.next
 
-        num1 = int(s1[::-1])
-        num2 = int(s2[::-1])
-        res_arr = list(str(num1+num2))
-        dummy = ListNode(0)
-        curr = dummy
-
-        for x in res_arr[::-1]:
-            curr.next = ListNode(int(x))
-            curr = curr.next
-        return dummy.next
-
-
-
-
-            
+        dummy = ListNode()
+        cur = dummy
+        carry = 0
         
+        while l1 or l2 or carry:
+
+            v1 = l1.val  if l1 else 0
+            v2 = l2.val if l2 else 0
+
+            res = v1+v2+carry
+            carry = res //10
+            res = res %10
+
+            cur.next = ListNode(res)
+
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+            cur = cur.next
+
+        return dummy.next
+            
+
+
