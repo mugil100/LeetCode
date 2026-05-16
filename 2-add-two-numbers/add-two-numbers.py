@@ -23,11 +23,7 @@ class Solution:
 
         num1 = int(s1[::-1])
         num2 = int(s2[::-1])
-
-        num3= num1+num2
-        res_arr = list(str(num3))
-        print("Result :",res_arr)
-
+        res_arr = list(str(num1+num2))
         dummy = ListNode(0)
         curr = dummy
 
