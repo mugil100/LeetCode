@@ -11,7 +11,6 @@ class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
 
         if not head : return None
-
         curr = head
         #craete a new ll as a copy of the original ll
         while curr:
@@ -19,22 +18,11 @@ class Solution:
             copy.next = curr.next
             curr.next = copy
             curr = curr.next.next
-        # curr = head
-        # while curr:
-        #     print(curr.val)
-        #     curr = curr.next
-
         #merge the random pointers correctly
         curr = head
         while curr:
             curr.next.random = curr.random.next if curr.random else None
             curr = curr.next.next
-        
-        curr = head
-        while curr:
-            print(curr.random.val if curr.random else None)
-            curr = curr.next.next
-        
         #seperate the clone from the original
         node = head
         copy_head = copy = head.next
