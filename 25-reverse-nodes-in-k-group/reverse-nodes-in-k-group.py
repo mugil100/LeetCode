@@ -11,6 +11,10 @@ class Solution:
             curr = curr.next
             count+=1
         iter = count //k
+
+        if iter <1:
+            return None
+
         dummy = ListNode(0)
         dummy.next = head
         prev = dummy
