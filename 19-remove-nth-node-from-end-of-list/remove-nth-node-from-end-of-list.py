@@ -11,10 +11,6 @@ class Solution:
         while curr:
             count+=1
             curr = curr.next
-
-        if n>count:
-            return None
-
         if n == count:
             head = head.next
             return head
