@@ -1,32 +1,26 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        idx={}
-        #create hashmap using the inorder traversal
-        for val,i in enumerate(inorder):
-            idx[i]=val
-        
-        def build(inL,inR,poL,poR):
-            if inL >inR:
+
+        idx = {}
+
+        for i,val in enumerate(inorder):
+            idx[val] = i
+
+        def build(il,ir,pl,pr):
+            if il>ir:
                 return None
-            rootVal = postorder[poR]
-            root = TreeNode(rootVal)
+            #compute the root valu and create the root node
+            root_val = postorder[pr]
+            root = TreeNode(root_val)
 
-            mid = idx[rootVal]
-            leftSize = mid - inL
+            #find the root val in inorder and find the leftsubtree length
+            mid = idx[root_val]
+            left_size = mid - il
 
-            root.left = build(inL,mid-1,poL,poL+leftSize-1)
-            root.right = build(mid+1,inR,poL+leftSize,poR-1)
+            #split the left and right subtree
+            root.left = build(il,   mid-1,  pl, pl+left_size-1)
+            root.right = build(mid+1,   ir, pl+left_size,   pr-1)
 
             return root
-
-        return build(0,len(inorder)-1,0,len(postorder)-1)
-
-
-
         
+        return build(0,len(inorder)-1,0,len(postorder)-1)
