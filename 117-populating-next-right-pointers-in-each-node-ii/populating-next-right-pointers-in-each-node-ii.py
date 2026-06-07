@@ -22,7 +22,7 @@ class Solution:
 
         def dfs(node):
             if not node:
-                return None
+                return 
             if node.left and node.right:
                 node.left.next = node.right
             if node.right:
